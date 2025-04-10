@@ -373,7 +373,9 @@ p { margin-bottom: var(--spacing-md); }
 .banner-content {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  padding-right: 40px; /* Add right padding to prevent overlap */
 }
 
 .banner-content p:first-child {
@@ -1790,7 +1792,7 @@ p { margin-bottom: var(--spacing-md); }
 
 @media (max-width: 768px) {
   :root { --font-size-4xl: 2rem; --font-size-3xl: 1.75rem; --font-size-2xl: 1.5rem; }
-  .banner-content { flex-direction: column; text-align: center; }
+  .banner-content { flex-direction: column; text-align: center; gap: unset;}
   .stats-container { flex-direction: column; align-items: center; }
   .stat-item { width: 100%; max-width: 300px; }
   .exchange-rate-indicator { flex-direction: column; gap: 15px; }
