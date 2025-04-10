@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정보 보안 및 사이버 보안 교육 | OffSec</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'>
+
+  <script>
+    // Simple, direct hamburger menu functionality
+    window.onload = function() {
+      const menuButton = document.getElementById('mobile-menu-toggle');
+      const navList = document.getElementById('nav-list');
+      
+      if (menuButton && navList) {
+        menuButton.onclick = function(e) {
+          e.preventDefault();
+          navList.classList.toggle('active');
+          
+          // Animate hamburger icon
+          const bars = menuButton.querySelectorAll('.bar');
+          if (bars.length > 0) {
+            if (navList.classList.contains('active')) {
+              bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+              bars[1].style.opacity = '0';
+              bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+              bars[0].style.transform = 'none';
+              bars[1].style.opacity = '1';
+              bars[2].style.transform = 'none';
+            }
+          }
+        };
+      }
+    };
+  </script>
+</head>
+<body>
+  <!-- 헤더 섹션 -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="#" aria-label="OffSec Home">
+            <img src="images/offsec-logo.svg" alt="OffSec 로고" />
+          </a>
+        </div>
+        <nav class="main-nav">
+          <button 
+            id="mobile-menu-toggle"
+            class="mobile-menu-toggle"
+            aria-label="메뉴 토글"
+            aria-controls="nav-list"
+            aria-expanded="false"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <ul id="nav-list" class="nav-menu" aria-hidden="true">
+            <li class="nav-item">
+              <a href="#" class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="PEN-200.html" class="nav-link">PEN-200</a>
+            </li>
+            <li class="nav-item">
+              <a href="course.html" class="nav-link">Bootcamp</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Apply</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- 알림 배너 -->
+  <div class="notification-banner">
+    <div class="container">
+      <div class="banner-content">
+        <p>신규 과정! Offsec PEN-200 (OSCP, OSCP+)</p>
+        <p>
+          Penetration Testing with Kali Linux에서 실습 훈련으로 기술을 향상시키세요.
+        </p>
+        <a href="#" class="btn btn-outline">더 알아보기</a>
+      </div>
+      <button class="banner-dismiss" aria-label="닫기"></button>
+    </div>
+  </div>
+
+  <main>
+    <!-- 학습 섹션 -->
+    <section class="learning-section scroll-reveal">
+      <div class="container">
+        <div class="learning-content">
+          <div class="learning-text">
+            <h2>OffSec과 함께 학습하기</h2>
+            <p>
+              우리의 학습 플랫폼과 라이브러리는 가장 엄격한 콘텐츠, 과정, 학습 경로 및 실습 랩을 포함합니다
+            </p>
+            <a href="course.html" class="btn btn-primary">강의 알아보기</a>
+          </div>
+          <div class="learning-icons">
+            <div class="hexagon-grid">
+              <!-- 육각형 아이콘들이 여기에 들어갑니다 -->
+                <img src="images/OSCP_Acclaim_Badge.png" alt="OSCP Acclaim Badge" />
+                <img src="images/OSCP_Certification.png" alt="OSCP Certification" />
+                <img src="images/offsec-hero.svg" alt="OffSec Hero" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- 환율 정보 섹션 -->
+  <section class="exchange-rate-section scroll-reveal">
+    <div class="container">
+      <div class="exchange-rate-content">
+        <div class="exchange-rate-header">
+          <h2>환율 정보</h2>
+          <div class="exchange-date-badge">
+            <i class="fas fa-calendar-alt"></i>
+            <span id="current-date">2025년 4월 8일</span>
+          </div>
+        </div>
+        
+        <div class="exchange-rate-card">
+          <div class="exchange-rate-indicator">
+            <div class="rate-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <i class="fas fa-exchange-alt"></i>
+              <i class="fas fa-won-sign"></i>
+            </div>
+            <div class="rate-value" id="current-rate">$1 = 1,756원</div>
+          </div>
+          
+          <div class="exchange-rate-comparison">
+            <div class="comparison-header">
+              <div class="comparison-title">과정 가격 비교</div>
+              <div class="comparison-legend">
+                <span class="legend-item"><i class="fas fa-circle offsec-color"></i> OffSec 직접 결제</span>
+                <span class="legend-item"><i class="fas fa-circle cis-color"></i> CIS 결제</span>
+              </div>
+            </div>
+            
+            <div class="course-price-cards" id="price-comparison-container">
+              <!-- JavaScript에서 동적으로 채워집니다 -->
+            </div>
+          </div>
+          
+          <div class="exchange-rate-note">
+            <i class="fas fa-info-circle"></i>
+            <p>환율은 매일 업데이트되며, CIS 결제 시 고정된 원화 가격으로 제공됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- 신뢰 섹션 -->
+    <section class="trusted-section scroll-reveal active">
+      <div class="container">
+        <h2>신뢰하는 기업</h2>
+        <div class="trusted-logos-container"> <!-- Added a container for overflow -->
+          <div class="trusted-logos">
+            <img src="images/cisco-logo.svg" alt="Cisco">
+            <img src="images/amazon-logo.svg" alt="Amazon">
+            <img src="images/accenture-logo.svg" alt="Accenture">
+            <img src="images/ibm-logo.svg" alt="IBM">
+            <!-- Duplicate the logos for seamless scroll -->
+            <img src="images/cisco-logo.svg" alt="Cisco" aria-hidden="true">
+            <img src="images/amazon-logo.svg" alt="Amazon" aria-hidden="true">
+            <img src="images/accenture-logo.svg" alt="Accenture" aria-hidden="true">
+            <img src="images/ibm-logo.svg" alt="IBM" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 역할별 교육 섹션 -->
+    <section class="roles-section scroll-reveal">
+      <div class="container">
+        <h2>사이버 보안 역할 또는 책임 영역에 맞는 OffSec 교육 찾기</h2>
+        <div class="roles-wrapper">
+          <!-- Mobile View -->
+          <div class="mobile-roles">
+            <div class="tile" data-category="offensive">
+              <img src="images/offensive.svg" alt="Offensive Security" />
+              <h3>Offensive Security</h3>
+              <div class="line"></div>
+              <div class="levels">
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Essentials job roles">
+                    <p>Essentials</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>공격자의 사고방식 이해하기</p>
+                    <ul>
+                      <li>Network Penetration Tester</li>
+                      <li>Web Application Tester</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Intermediate job roles">
+                    <p>Intermediate</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>해킹 및 침투테스트 기술 개발</p>
+                    <ul>
+                      <li>PEN-200: Penetration Testing with Kali Linux</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Advanced job roles">
+                    <p>Advanced</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>조직 전체의 전문적인 보호</p>
+                    <ul>
+                      <li>PEN-300: Advanced Evasion Techniques</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tile" data-category="defensive">
+              <img src="images/defensive.svg" alt="Defensive Security" />
+              <h3>Defensive Security</h3>
+              <div class="line"></div>
+              <div class="levels">
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Essentials job roles">
+                    <p>Essentials</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>방어 요구사항 이해하기</p>
+                    <ul>
+                      <li>SOC Analyst</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Intermediate job roles">
+                    <p>Intermediate</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>완화 절차 개발</p>
+                    <ul>
+                      <li>SOC-200: Security Operations</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Advanced job roles">
+                    <p>Advanced</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>선제적이고 탄력적인 방어</p>
+                    <ul>
+                      <li>MITRE ATT&CK Training</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tile" data-category="secure">
+              <img src="images/secure.svg" alt="Secure Development" />
+              <h3>Secure Development</h3>
+              <div class="line"></div>
+              <div class="levels">
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Essentials job roles">
+                    <p>Essentials</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>개발 시 보안 위험 파악 및 추적</p>
+                    <ul>
+                      <li>Software Developer</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Intermediate job roles">
+                    <p>Intermediate</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>개발에 보안 모범 사례 통합</p>
+                    <ul>
+                      <li>WEB-200: Foundational Web Assessments</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Advanced job roles">
+                    <p>Advanced</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>보안 우선 소프트웨어 개발 수명 주기</p>
+                    <ul>
+                      <li>WEB-300: Advanced Web Attacks</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tile" data-category="cybersecurity">
+              <img src="images/admin.svg" alt="IT Team Cybersecurity" />
+              <h3>IT Team Cybersecurity</h3>
+              <div class="line"></div>
+              <div class="levels">
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Essentials job roles">
+                    <p>Essentials</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>IT 및 시스템 관리자를 위한 사이버 보안 이해</p>
+                    <ul>
+                      <li>IT Generalist</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="level-item" data-open="false">
+                  <button type="button" class="level-button" role="switch" aria-checked="false" aria-label="Intermediate job roles">
+                    <p>Intermediate</p>
+                    <div class="icon">
+                      <div class="horizontal"></div>
+                      <div class="vertical"></div>
+                    </div>
+                  </button>
+                  <div class="level-content">
+                    <p>보안 프로세스 개발</p>
+                    <ul>
+                      <li>PEN-200: Penetration Testing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop View -->
+          <div class="desktop-roles">
+            <div class="roles-grid-container">
+              <!-- Column Labels -->
+              <div class="grid-label label-entry">Entry-level</div>
+              <div class="grid-label label-essentials">Essentials</div>
+              <div class="grid-label label-intermediate">Intermediate</div>
+              <div class="grid-label label-advanced">Advanced</div>
+
+              <!-- Connection Lines -->
+              <div class="connection-lines">
+                <!-- Offensive Security Line -->
+                <svg width="99" height="287" viewBox="0 0 99 287" fill="none" xmlns="http://www.w3.org/2000/svg" class="line-offensive">
+                  <path d="M0 286H36C41.5228 286 46 281.523 46 276V11C46 5.47715 50.4772 1 56 1H99" stroke="url(#paint0_linear_offensive)" stroke-width="2"></path>
+                  <defs>
+                    <linearGradient id="paint0_linear_offensive" x1="49" y1="1" x2="49" y2="286" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FA0B53" stop-opacity="0.7"></stop>
+                      <stop offset="1" stop-color="#FA0B53" stop-opacity="0.3"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <!-- Offensive 가로선 -->
+                <svg width="700" height="10" xmlns="http://www.w3.org/2000/svg" class="horizontal-line offensive-line">
+                  <line x1="10" y1="5" x2="590" y2="5" stroke="url(#paint0_linear_offensive_h)" stroke-width="2"></line>
+                  <defs>
+                    <linearGradient id="paint0_linear_offensive_h" x1="10" y1="5" x2="690" y2="5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FA0B53" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#FA0B53" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                
+                <!-- Defensive Security Line -->
+                <svg width="99" height="97" viewBox="0 0 99 97" fill="none" xmlns="http://www.w3.org/2000/svg" class="line-defensive">
+                  <path d="M0 96H50.8837C56.4066 96 60.8837 91.5228 60.8837 86V11C60.8837 5.47715 65.3609 1 70.8837 1L99 1" stroke="url(#paint0_linear_defensive)" stroke-width="2"></path>
+                  <defs>
+                    <linearGradient id="paint0_linear_defensive" x1="47.3163" y1="1" x2="47.3163" y2="96" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00C1CD" stop-opacity="0.7"></stop>
+                      <stop offset="1" stop-color="#00C1CD" stop-opacity="0.3"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <!-- Defensive 가로선 -->
+                <svg width="700" height="10" xmlns="http://www.w3.org/2000/svg" class="horizontal-line defensive-line">
+                  <line x1="10" y1="5" x2="590" y2="5" stroke="url(#paint0_linear_defensive_h)" stroke-width="2"></line>
+                  <defs>
+                    <linearGradient id="paint0_linear_defensive_h" x1="10" y1="5" x2="690" y2="5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#00C1CD" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#00C1CD" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                
+                <!-- Secure Development Line -->
+                <svg width="100" height="123" viewBox="0 0 100 123" fill="none" xmlns="http://www.w3.org/2000/svg" class="line-secure">
+                  <path d="M100 122H71.6509C66.128 122 61.6509 117.523 61.6509 112V11C61.6509 5.47715 57.1737 1 51.6509 1H0" stroke="url(#paint0_linear_secure)" stroke-width="2"></path>
+                  <defs>
+                    <linearGradient id="paint0_linear_secure" x1="86.5674" y1="1" x2="86.5674" y2="122" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FFC700" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#FFC700" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <!-- Secure 가로선 -->
+                <svg width="700" height="10" xmlns="http://www.w3.org/2000/svg" class="horizontal-line secure-line">
+                  <line x1="10" y1="5" x2="590" y2="5" stroke="url(#paint0_linear_secure_h)" stroke-width="2"></line>
+                  <defs>
+                    <linearGradient id="paint0_linear_secure_h" x1="10" y1="5" x2="690" y2="5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#FFC700" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#FFC700" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                
+                <!-- IT Team Line -->
+                <svg width="99" height="315" viewBox="0 0 99 315" fill="none" xmlns="http://www.w3.org/2000/svg" class="line-it">
+                  <path d="M99 314H55.9917C50.4689 314 45.9918 309.523 45.9918 304V11C45.9918 5.47715 41.5146 1 35.9918 1H0" stroke="url(#paint0_linear_it)" stroke-width="2"></path>
+                  <defs>
+                    <linearGradient id="paint0_linear_it" x1="43.3452" y1="1" x2="43.3452" y2="314" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#52FF00" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#52FF00" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <!-- IT Team 가로선 -->
+                <svg width="700" height="10" xmlns="http://www.w3.org/2000/svg" class="horizontal-line it-line">
+                  <line x1="10" y1="5" x2="390" y2="5" stroke="url(#paint0_linear_it_h)" stroke-width="2"></line>
+                  <defs>
+                    <linearGradient id="paint0_linear_it_h" x1="10" y1="5" x2="690" y2="5" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#52FF00" stop-opacity="0.3"></stop>
+                      <stop offset="1" stop-color="#52FF00" stop-opacity="0.7"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Row 1: SEC-100 -->
+              <div class="grid-item item-sec-100">
+                  <a href="javascript:void(0);" class="tile tile-sec-100">
+                      <img src="images/secure.svg" alt="SEC-100 Icon" />
+                      <h3>SEC-100: Security Essentials (OSCC)</h3>
+                      <div class="line"></div>
+                      <p>모든 사이버 보안 역할에 필요한 핵심 지식 습득</p>
+                  </a>                
+              </div>
+
+              <!-- Row 2: Offensive Security -->
+              <div class="grid-item item-offensive-essentials">
+                  <a href="javascript:void(0);" class="tile tile-offensive">
+                      <img src="images/offensive.svg" alt="Offensive Icon" />
+                      <h3>Offensive Security</h3>
+                      <div class="line"></div>
+                      <p>공격자의 사고방식 이해하기</p>
+                  </a>
+              </div>
+              <div class="grid-item item-offensive-intermediate">
+                  <a href="javascript:void(0);" class="tile tile-offensive">
+                      <img src="images/offensive.svg" alt="Offensive Icon" />
+                      <h3>Offensive Security</h3>
+                      <div class="line"></div>
+                      <p>해킹 및 침투테스트 기술 개발</p>
+                  </a>
+              </div>
+              <div class="grid-item item-offensive-advanced">
+                   <a href="javascript:void(0);" class="tile tile-offensive">
+                      <img src="images/offensive.svg" alt="Offensive Icon" />
+                      <h3>Offensive Security</h3>
+                      <div class="line"></div>
+                      <p>조직 전체의 전문적인 보호</p>
+                  </a>
+              </div>
+
+              <!-- Row 3: Defensive Security -->
+              <div class="grid-item item-defensive-essentials">
+                  <a href="javascript:void(0);" class="tile tile-defensive">
+                      <img src="images/defensive.svg" alt="Defensive Icon" />
+                      <h3>Defensive Security</h3>
+                      <div class="line"></div>
+                      <p>방어 요구사항 이해하기</p>
+                  </a>
+              </div>
+              <div class="grid-item item-defensive-intermediate">
+                   <a href="javascript:void(0);" class="tile tile-defensive">
+                      <img src="images/defensive.svg" alt="Defensive Icon" />
+                      <h3>Defensive Security</h3>
+                      <div class="line"></div>
+                      <p>완화 절차 개발</p>
+                  </a>
+              </div>
+              <div class="grid-item item-defensive-advanced">
+                  <a href="javascript:void(0);" class="tile tile-defensive">
+                      <img src="images/defensive.svg" alt="Defensive Icon" />
+                      <h3>Defensive Security</h3>
+                      <div class="line"></div>
+                      <p>선제적이고 탄력적인 방어</p>
+                  </a>
+              </div>
+
+              <!-- Row 4: Secure Development -->
+              <div class="grid-item item-secure-essentials">
+                  <a href="javascript:void(0);" class="tile tile-secure">
+                      <img src="images/secure.svg" alt="Secure Dev Icon" />
+                      <h3>Secure Development</h3>
+                      <div class="line"></div>
+                      <p>개발 시 보안 위험 파악 및 추적</p>
+                  </a>
+              </div>
+              <div class="grid-item item-secure-intermediate">
+                  <a href="javascript:void(0);" class="tile tile-secure">
+                      <img src="images/secure.svg" alt="Secure Dev Icon" />
+                      <h3>Secure Development</h3>
+                      <div class="line"></div>
+                      <p>개발에 보안 모범 사례 통합</p>
+                  </a>
+              </div>
+              <div class="grid-item item-secure-advanced">
+                  <a href="javascript:void(0);" class="tile tile-secure">
+                      <img src="images/secure.svg" alt="Secure Dev Icon" />
+                      <h3>Secure Development</h3>
+                      <div class="line"></div>
+                      <p>보안 우선 소프트웨어 개발 수명 주기</p>
+                  </a>
+              </div>
+
+              <!-- Row 5: IT Team Cybersecurity -->
+              <div class="grid-item item-it-essentials">
+                  <a href="javascript:void(0);" class="tile tile-it">
+                      <img src="images/admin.svg" alt="IT Team Icon" />
+                      <h3>IT Team Cybersecurity</h3>
+                      <div class="line"></div>
+                      <p>IT 및 시스템 관리자를 위한 사이버 보안 이해</p>
+                  </a>
+              </div>
+              <div class="grid-item item-it-intermediate">
+                  <a href="javascript:void(0);" class="tile tile-it">
+                      <img src="images/admin.svg" alt="IT Team Icon" />
+                      <h3>IT Team Cybersecurity</h3>
+                      <div class="line"></div>
+                      <p>보안 프로세스 개발</p>
+                  </a>
+              </div>
+               <!-- Empty cell for IT Advanced if needed -->
+               <div class="grid-item item-it-advanced empty"></div>
+            </div>
+          </div>
+
+          <!-- Key Wrapper -->
+          <div class="key-wrapper">
+            <div class="key">
+              <span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.7482 11.6152C14.7482 12.0752 14.4712 12.4042 13.8352 12.7972L8.41822 15.5002C8.19282 15.5676 7.95262 15.5676 7.72722 15.5002L2.35922 12.8002C1.72622 12.4042 1.44922 12.0772 1.44922 11.6182V0.450195H14.7482V11.6152Z" stroke="currentColor" stroke-width="0.9" stroke-miterlimit="10" stroke-linejoin="round"></path>
+                  <path d="M12.8597 10.8258C12.8597 11.1318 12.6947 11.3558 12.2447 11.6488L8.28766 13.7188C8.15552 13.7581 8.01479 13.7581 7.88266 13.7188L3.96266 11.6508C3.51366 11.3568 3.34766 11.1328 3.34766 10.8288V2.34375H12.8607V10.8258H12.8597Z" stroke="currentColor" stroke-width="0.9" stroke-miterlimit="10" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <p>= Course Certification</p>
+            </div>
+            <div class="key">
+              <span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.883 15.458L1.657 11.863C1.6094 11.8355 1.56985 11.796 1.5423 11.7485C1.51475 11.7009 1.50016 11.647 1.5 11.592V4.405C1.5 4.295 1.559 4.191 1.657 4.135V4.134L7.882 0.543002C7.92902 0.515497 7.98252 0.5 8.037 0.5C8.09148 0.5 8.14498 0.514497 8.192 0.542002H8.194L14.418 4.134C14.517 4.191 14.576 4.294 14.576 4.405V11.592C14.5757 11.6471 14.561 11.7011 14.5333 11.7486C14.5055 11.7962 14.4658 11.8356 14.418 11.863L8.194 15.457L8.193 15.458C8.14598 15.4855 8.09248 15.5 8.038 15.5C7.98352 15.5 7.93002 15.4855 7.883 15.458Z" stroke="currentColor" stroke-linejoin="round"></path>
+                  <path d="M12.8597 10.8258C12.8597 11.1318 12.6947 11.3558 12.2447 11.6488L8.28766 13.7188C8.15552 13.7581 8.01479 13.7581 7.88266 13.7188L3.96266 11.6508C3.51366 11.3568 3.34766 11.1328 3.34766 10.8288V2.34375H12.8607V10.8258H12.8597Z" stroke="currentColor" stroke-width="0.9" stroke-miterlimit="10" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <p>= Learning Path Badge</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 히어로 섹션 (scroll-reveal 클래스 추가) -->
+    <section class="hero-section scroll-reveal">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>국제 공인 파트너</h1>
+            <p>
+              국내 유일의 Offsec 파트너이자 <br> 정보보호 및 IT 컨설팅 전문 기업인 CIS에서 진행합니다.
+            </p>
+            <div class="hero-buttons">
+              <a href="https://cis.re.kr" class="btn btn-primary">알아보기</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="images/offsec_partner.png" alt="OffSec 로고" height="350" width="350"/>
+            <img src="images/CIS_logo.png" alt="CIS 로고" height="350" width="350"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 통계 섹션 -->
+    <section class="stats-section scroll-reveal">
+      <div class="container">
+        <h2>학습 라이브러리에서 찾을 수 있는 것</h2>
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-book"></i></div>
+            <div class="stat-number">7,800+</div>
+            <div class="stat-label">문서 콘텐츠 시간</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-video"></i></div>
+            <div class="stat-number">1,600+</div>
+            <div class="stat-label">동영상</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-flask"></i></div>
+            <div class="stat-number">5,460</div>
+            <div class="stat-label">실습 랩</div>
+          </div>
+        </div>
+        <p class="stats-note">*2025년 4월 3일 기준 데이터</p>
+        <div class="stats-cta">
+          <a href="#" class="btn btn-primary">데모 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 추천 섹션 -->
+    <section class="testimonials-section scroll-reveal">
+      <div class="container">
+        <h2>강의 수강생분들의 평가</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <img src="images/human.png" alt="human1" />
+              </div>
+              <div class="testimonial-author">
+                <h3>박**</h3>
+                <p>Senior Researcher, CIS</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>
+                사이버 보안 교육을 받으려고 한다면 반드시 OffSec이여야 한다고 생각합니다다.
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <img src="images/human.png" alt="human2" />
+              </div>
+              <div class="testimonial-author">
+                <h3>김**</h3>
+                <p>Junior Researcher, CIS</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>
+                OSCP 강의를 들으며 각 챕터 별로 중요한 부분을 설명해주시고, 기출문제도 주셨어서 OSCP합격에 많은 도움이 되었습니다!
+              </p>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar">
+                <img src="images/human.png" alt="Douglas Costa" />
+              </div>
+              <div class="testimonial-author">
+                <h3>정**</h3>
+                <p>Junior Researcher, CIS</p>
+              </div>
+            </div>
+            <div class="testimonial-content">
+              <p>
+                회사 동료들의 추천을 받아 알게 되었고, 왜 추천했는지 알 수 있었을 만큼 좋은 교육이었습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 인재 섹션 -->
+    <section class="talent-section scroll-reveal">
+      <div class="container">
+        <h2>OffSec과 함께하는 사이버 보안 인재 관리</h2>
+        <div class="talent-management-container">
+          <div class="talent-steps-nav">
+            <!-- Updated with proper data attributes and icons -->
+            <button class="talent-step active" data-tab="assess">
+              <div class="stage-icon-wrapper">
+                <i class="fas fa-binoculars"></i>
+              </div>
+              <span>평가</span>
+            </button>
+            <button class="talent-step" data-tab="onboard">
+              <div class="stage-icon-wrapper">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <span>온보딩</span>
+            </button>
+            <button class="talent-step" data-tab="upskill">
+              <div class="stage-icon-wrapper">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <span>스킬 향상</span>
+            </button>
+            <button class="talent-step" data-tab="retain">
+              <div class="stage-icon-wrapper">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <span>유지</span>
+            </button>
+          </div>
+
+          <div class="talent-content-panels">
+            <!-- Assess Panel -->
+            <div class="talent-panel active" data-tab-content="assess">
+              <div class="stage-goal">
+                <i class="fas fa-star stage-icon-indicator"></i>
+                <div>
+                  <h4>이 단계의 목표</h4>
+                  <p>사이버 보안 전문가의 기술을 평가하여 적합한 인재를 선발합니다.</p>
+                </div>
+              </div>
+              <div class="stage-help">
+                <i class="fas fa-lightbulb stage-icon-indicator"></i>
+                <div>
+                  <h4>OffSec가 어떻게 도와줄 수 있는가</h4>
+                  <p>OffSec의 평가 도구를 통해 사이버 보안 전문가의 기술을 평가하고, 적합한 인재를 선발할 수 있습니다.</p>
+                </div>
+              </div>
+              <a href="#" class="btn btn-primary">평가 도구 살펴보기</a>
+            </div>
+
+            <div class="talent-panel" id="onboard-content" data-tab-content="onboard">
+              <div class="stage-goal">
+                <i class="fas fa-star stage-icon-indicator"></i>
+                <div>
+                  <h4>이 단계의 목표</h4>
+                  <p>신입 인재를 온보딩하여 사이버 보안에 대한 지식을 습득할 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <div class="stage-help">
+                <i class="fas fa-lightbulb stage-icon-indicator"></i>
+                <div>
+                  <h4>OffSec가 어떻게 도와줄 수 있는가</h4>
+                  <p>OffSec의 온보딩 프로그램을 통해 신입 인재가 사이버 보안에 대한 지식을 습득하고, 실무에서 필요한 기술을 향상시킬 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <a href="#" class="btn btn-primary">온보딩 프로그램 살펴보기</a>
+            </div>
+
+            <div class="talent-panel" id="upskill-content" data-tab-content="upskill">
+              <div class="stage-goal">
+                <i class="fas fa-star stage-icon-indicator"></i>
+                <div>
+                  <h4>이 단계의 목표</h4>
+                  <p>사이버 보안 전문가의 기술을 향상시켜 실무에서 필요한 기술을 습득할 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <div class="stage-help">
+                <i class="fas fa-lightbulb stage-icon-indicator"></i>
+                <div>
+                  <h4>OffSec가 어떻게 도와줄 수 있는가</h4>
+                  <p>OffSec의 교육 프로그램을 통해 사이버 보안 전문가의 기술을 향상시켜 실무에서 필요한 기술을 습득할 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <a href="#" class="btn btn-primary">교육 프로그램 살펴보기</a>
+            </div>
+
+            <div class="talent-panel" id="retain-content" data-tab-content="retain">
+              <div class="stage-goal">
+                <i class="fas fa-star stage-icon-indicator"></i>
+                <div>
+                  <h4>이 단계의 목표</h4>
+                  <p>사이버 보안 전문가를 유지하여 실무에서 필요한 기술을 습득할 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <div class="stage-help">
+                <i class="fas fa-lightbulb stage-icon-indicator"></i>
+                <div>
+                  <h4>OffSec가 어떻게 도와줄 수 있는가</h4>
+                  <p>OffSec의 유지 프로그램을 통해 사이버 보안 전문가를 유지하여 실무에서 필요한 기술을 습득할 수 있도록 지원합니다.</p>
+                </div>
+              </div>
+              <a href="#" class="btn btn-primary">유지 프로그램 살펴보기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- 학습 접근법 섹션 -->
+  <section class="approach-section scroll-reveal">
+    <div class="container">
+      <h2>우리의 독특한 학습 접근 방식</h2>
+      <div class="approach-content"> <!-- Added wrapper -->
+        <div class="approach-text">
+          <div class="approach-step step-growth">
+            <div class="step-content">
+              <h3>성장</h3>
+              <p>창의적인 적용을 통해 성장과 지식의 확장을 달성합니다.</p>
+            </div>
+          </div>
+          <div class="approach-step step-triumph">
+            <div class="step-content">
+              <h3>성취</h3>
+              <p>자신감, 패턴 인식, 지혜를 창조하고 새로운 학습을 위해 사이클을 반복합니다.</p>
+            </div>
+          </div>
+          <div class="approach-step step-trial">
+            <div class="step-content">
+              <h3>시도</h3>
+              <p>시도 과정을 통해 학습자가 이해, 학습, 적용, 분석, 종합 및 가설을 설정할 수 있도록 지원합니다.</p>
+            </div>
+          </div>
+          <div class="approach-step step-failure">
+            <div class="step-content">
+              <h3>실패</h3>
+              <p>실패는 학습의 중요한 부분입니다. 어떻게 실패에서 벗어나서 학습할 수 있는지에 대한 기술을 습득합니다.</p>
+            </div>
+          </div>
+          <div class="approach-step step-adaptation">
+            <div class="step-content">
+              <h3>적응</h3>
+              <p>창의적인 아이디어와 접근 방식이 시도와 실패를 통해 등장합니다.</p>
+            </div>
+          </div>
+        </div>
+        <div class="approach-graphic">
+          <img src="images/offsec-courses.svg" alt="OffSec 과정" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- 오픈소스 도구 섹션 -->
+    <section class="tools-section scroll-reveal">
+      <div class="container">
+        <h2>우리의 무료 오픈소스 도구</h2>
+        <div class="tools-grid">
+          <a href="#" class="tool-item">
+            <img src="images/kali.svg" alt="Kali" />
+          </a>
+          <a href="#" class="tool-item">
+            <img src="images/KNH.svg" alt="Kali NetHunter" />
+          </a>
+          <a href="#" class="tool-item">
+            <img src="images/EXDB.svg" alt="Exploit Database" />
+          </a>
+          <a href="#" class="tool-item">
+            <img src="images/GHD.svg" alt="Google Hacking Database" />
+          </a>
+          <a href="#" class="tool-item">
+            <img src="images/metasploit.svg" alt="Metasploit Unleashed" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add Floating Action Button for Apply -->
+  <div class="floating-action-button">
+    <a href="#" class="fab-button">신청</a>
+  </div>
+
+    <!-- 푸터 섹션 -->
+    <footer>
+      <div class="container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>Copyright &copy; 2025 시아이에스(CIS). All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

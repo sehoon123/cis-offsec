@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEN-200: Penetration Testing with Kali Linux | OffSec</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/course.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" type="text/css" href='https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css'>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 헤더 섹션 -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html" aria-label="OffSec Home">
+            <img src="images/offsec-logo.svg" alt="OffSec Logo" />
+          </a>
+        </div>
+        <nav class="main-nav">
+          <button 
+            id="mobile-menu-toggle"
+            class="mobile-menu-toggle"
+            aria-label="메뉴 토글"
+            aria-controls="nav-list"
+            aria-expanded="false"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <ul id="nav-list" class="nav-menu" aria-hidden="true">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="PEN-200.html" class="nav-link">PEN-200</a>
+            </li>
+            <li class="nav-item">
+              <a href="course.html" class="nav-link active">Bootcamp</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Apply</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Course Hero Section -->
+    <section class="course-hero scroll-reveal">
+      <div class="container">
+        <div class="course-content">
+          <div class="course-header">
+            <span class="course-badge">FLAGSHIP COURSE</span>
+            <h1>OffSec PEN-200(OSCP, OSCP+) Course</h1>
+            <div class="certification-badges">
+              <div class="cert-badge">OSCP</div>
+              <div class="cert-badge">OSCP+</div>
+            </div>
+            <div><img src="images/oscp.svg" alt="OSCP Logo" height="250" width="250" /></div>
+            <br>
+            <p>
+              본 과정은 OSCP(Offensive Security Certified Professional) 자격증 취득을 목표로 하며, 실제 기업 환경에서 마주치는 다양한 침투 검색을 실습 환경에서 직접 실습하면서 분석능력을 키워나갈 수 있습니다.            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Details Section -->
+    <section class="course-details-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-heading">과정 정보</h2>
+        <div class="course-details">
+          <div class="course-detail-card">
+            <div class="course-detail-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <h3 class="course-detail-title">교육 일정</h3>
+            <p>2023년 4월 29일 ~ 2025년 6월 18일, 총 8주<br>(매주 화·수 오후 7시~10시)</p>
+          </div>
+          <div class="course-detail-card">
+            <div class="course-detail-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="course-detail-title">교육 방법</h3>
+            <p>"Discord" 를 통한 라이브 수업(실시간 온라인)</p>
+          </div>
+          <div class="course-detail-card">
+            <div class="course-detail-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="course-detail-title">교육 인원</h3>
+            <p>총 24인 한정(선착순)</p>
+          </div>
+          <div class="course-detail-card">
+            <div class="course-detail-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <h3 class="course-detail-title">신청 방법</h3>
+            <p>사이버먼스(CIS) 대표 홈페이지를 통해 신청 >> <a href="https://cis.re.kr">https://cis.re.kr</a><br>
+            ▶ 한국결제시 세금계산서 및 현금영수증 발행 가능(VAT 별도)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Features Section -->
+    <section class="features-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-heading">과정 구성</h2>
+        <div class="course-features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>PEN-200 90일 Course</h3>
+            <p>+ 시험 응시권 1회 + 48시간 라이브 학습</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>과정 특징</h3>
+            <p>OffSec 공인강사에 의한 직접 수업수업, 실시간 피드백,<br>
+            사용 자료 공유</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Course Syllabus Section -->
+    <section class="syllabus-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-heading">커리큘럼(일정)</h2>
+        <div class="course-syllabus">
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>1주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-rocket"></i> PEN-200 소개</p>
+              <p><i class="fas fa-server"></i> 랩 환경구조 프로필 세팅</p>
+              <p><i class="fas fa-link"></i> 킬체인 과정</p>
+              <p><i class="fas fa-search"></i> 정보수집</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>2주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-shield-alt"></i> 취약점 스캔</p>
+              <p><i class="fas fa-globe"></i> 웹 취약점 이해</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>3주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-laptop"></i> 클라이언트측 공격</p>
+              <p><i class="fas fa-bug"></i> 공격벡터 익스플로잇 이해</p>
+              <p><i class="fab fa-windows"></i> 윈도우권한 상승</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>4주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-terminal"></i> 파워쉘 익스플로잇 응용</p>
+              <p><i class="fas fa-code"></i> 메스플로잇 활용</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>5주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fab fa-linux"></i> 리눅스 권한상승 취약점들</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>6주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-random"></i> 포트 리다이렉션</p>
+              <p><i class="fas fa-key"></i> SSH 터널링</p>
+              <p><i class="fas fa-folder-open"></i> 심층해킹 실습(Nix) 취약점 이용 디렉터리</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>7주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-dragon"></i> Kali 이해</p>
+              <p><i class="fas fa-sitemap"></i> 액티브 디렉터리 이해</p>
+            </div>
+          </div>
+          <div class="syllabus-item">
+            <div class="syllabus-title">
+              <span>8주차</span>
+            </div>
+            <div class="syllabus-content">
+              <p><i class="fas fa-flag"></i> AD 1일 공격법</p>
+              <p><i class="fas fa-project-diagram"></i> 시나리오 기반 실습</p>
+              <p><i class="fas fa-graduation-cap"></i> 시험 전 준비</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-heading">자주 묻는 질문(FAQ)</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>OSCP와 OSCP+은 어떻게 인증(자격증)하나요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>1. 24시간 동안(10시간 휴식 포함) 총 14시간 동안 5개의 문제(OSCP, OSCP+ 모두 동일) 풀이<br>
+              2. 48시간 이내 리포트 제출(100점 만점에 70점 이상 합격)</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>OSCP, OSCP+의 차이점은 무엇인가요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>두 자격증의 시험 출제 경향은 동일하나 PEN-200 Course에 포함된 AD(Active Directory) Course 내용이 OSCP+에 포함됩니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>PEN-200 Course 학습 이후에 재응시 가능한가요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>1. 부트캠프는 PEN-200 Course와 시험 응시권 그리고 라이브 수업의 패키지 형태이므로 별도 구매가 필요합니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>부트캠프 수강 도중 네트워크나 발열에 가능한가요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>네, 공개적으로 공유 가능한 자료는 제공해 드립니다. (개인적 개발은 불가능 합니다.)</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>시험 준비해야 하는 시간이 얼마나 되나요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>개인차가 있지만 보통 3개월 이상 준비하시는 것을 권장드립니다.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>시험의 경우 어떻게 이루어지나요?</span>
+              <button class="faq-toggle" aria-label="Toggle answer">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="faq-answer">
+              <p>1. 오픈북 방식이며 인터넷 검색 가능합니다. 다만 다른 사람에게 질문하거나 공개된 문제 풀이를 참고하는 것은 금지됩니다.<br>
+              2. 시험 시작 시간은 본인이 선택 가능하며, 시험 24시간 전에 VPN 접속 테스트를 진행합니다. 시험 시작 시간 30분 전에 프록터(감독관)와 미팅을 진행하고 신분증과 웹캠을 통한 주변 환경 확인 후 시험이 시작됩니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section scroll-reveal">
+      <div class="container">
+        <h2 class="section-heading">문의</h2>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> Email : cis@cis.re.kr</p>
+          <p><i class="fas fa-phone"></i> Phone : (+82) 10-3133-4440</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add Floating Action Button for Apply -->
+  <div class="floating-action-button">
+    <a href="#" class="fab-button">신청</a>
+  </div>
+  
+    <!-- 푸터 섹션 -->
+    <footer>
+      <div class="container">
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>Copyright &copy; 2025 시아이에스(CIS). All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+  <script src="js/main.js"></script>
+  
+  <script>
+    // Simple, direct hamburger menu functionality
+    window.onload = function() {
+      const menuButton = document.getElementById('mobile-menu-toggle');
+      const navList = document.getElementById('nav-list');
+      
+      if (menuButton && navList) {
+        menuButton.onclick = function(e) {
+          e.preventDefault();
+          navList.classList.toggle('active');
+          
+          // Animate hamburger icon
+          const bars = menuButton.querySelectorAll('.bar');
+          if (bars.length > 0) {
+            if (navList.classList.contains('active')) {
+              bars[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+              bars[1].style.opacity = '0';
+              bars[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+              bars[0].style.transform = 'none';
+              bars[1].style.opacity = '1';
+              bars[2].style.transform = 'none';
+            }
+          }
+        };
+      }
+
+      // Toggle syllabus items
+      const syllabusItems = document.querySelectorAll('.syllabus-title');
+      syllabusItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const content = item.nextElementSibling;
+          content.style.display = content.style.display === 'none' ? 'block' : 'none';
+          const icon = item.querySelector('i');
+          icon.classList.toggle('fa-plus');
+          icon.classList.toggle('fa-minus');
+          
+          // Add animation when opening
+          if (content.style.display === 'block') {
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+              content.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              content.style.opacity = '1';
+              content.style.transform = 'translateY(0)';
+            }, 10);
+          }
+        });
+      });
+      
+      // Scroll reveal animation
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      const revealOnScroll = function() {
+        for (let i = 0; i < revealElements.length; i++) {
+          const windowHeight = window.innerHeight;
+          const elementTop = revealElements[i].getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            revealElements[i].classList.add('active');
+          }
+        }
+      };
+      
+      window.addEventListener('scroll', revealOnScroll);
+      // Trigger once on load
+      revealOnScroll();
+      
+      // Add hover animation for course detail cards
+      const detailCards = document.querySelectorAll('.course-detail-card');
+      detailCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          const icon = this.querySelector('.course-detail-icon i');
+          icon.style.animation = 'pulse 0.5s ease';
+          
+          setTimeout(() => {
+            icon.style.animation = '';
+          }, 500);
+        });
+      });
+      
+      // Add hover animation for feature cards
+      const featureCards = document.querySelectorAll('.feature-card');
+      featureCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          const icon = this.querySelector('.feature-icon i');
+          icon.style.animation = 'pulse 0.5s ease';
+          
+          setTimeout(() => {
+            icon.style.animation = '';
+          }, 500);
+        });
+      });
+    };
+  </script>
+  
+  <script>
+    // FAQ 아코디언 기능 직접 구현 (main.js의 기능 덮어쓰기)
+    document.addEventListener('DOMContentLoaded', function() {
+      // main.js의 이벤트 리스너 제거를 위해 새로운 요소로 교체
+      const faqContainer = document.querySelector('.faq-container');
+      if (faqContainer) {
+        const newFaqContainer = faqContainer.cloneNode(true);
+        faqContainer.parentNode.replaceChild(newFaqContainer, faqContainer);
+        
+        // 새로운 이벤트 리스너 추가
+        const faqItems = newFaqContainer.querySelectorAll('.faq-item');
+        const faqQuestions = newFaqContainer.querySelectorAll('.faq-question');
+        const faqToggles = newFaqContainer.querySelectorAll('.faq-toggle');
+        
+        // 질문 클릭 이벤트
+        faqQuestions.forEach(question => {
+          question.addEventListener('click', function() {
+            const item = this.closest('.faq-item');
+            item.classList.toggle('active');
+          });
+        });
+        
+        // 버튼 클릭 이벤트
+        faqToggles.forEach(toggle => {
+          toggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // 이벤트 전파 방지
+            const item = this.closest('.faq-item');
+            item.classList.toggle('active');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
